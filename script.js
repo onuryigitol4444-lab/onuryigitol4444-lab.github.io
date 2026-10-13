@@ -50,6 +50,30 @@ document.querySelectorAll('.gallery img').forEach((img, i) => {
 const windMap = document.querySelector('.research-panel img');
 if (windMap) windMap.src = 'assets/images/green-city.svg?v=20261013-1857';
 
+const cursorGlow = document.querySelector('.cursor-glow');
+if (cursorGlow && window.matchMedia('(pointer:fine)').matches) {
+  let currentX = window.innerWidth / 2;
+  let currentY = window.innerHeight / 2;
+  let targetX = currentX;
+  let targetY = currentY;
+
+  window.addEventListener('pointermove', (e) => {
+    targetX = e.clientX;
+    targetY = e.clientY;
+    cursorGlow.classList.add('active');
+  }, { passive: true });
+
+  window.addEventListener('pointerleave', () => cursorGlow.classList.remove('active'));
+
+  const animateGlow = () => {
+    currentX += (targetX - currentX) * 0.16;
+    currentY += (targetY - currentY) * 0.16;
+    cursorGlow.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%)`;
+    requestAnimationFrame(animateGlow);
+  };
+  animateGlow();
+}
+
 const observer = new IntersectionObserver(entries => entries.forEach(e => {
   if (e.isIntersecting) e.target.classList.add('visible');
 }), { threshold: .12 });
