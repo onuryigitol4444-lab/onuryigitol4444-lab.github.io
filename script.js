@@ -8,10 +8,14 @@ nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.cl
 
 const profileImg = document.querySelector('.portrait-frame img');
 if (profileImg) {
-  profileImg.src = 'assets/images/profile-clean.png?v=20261013-1600';
+  profileImg.src = 'assets/images/profile-lite.jpg?v=20261013-1626';
   profileImg.alt = 'Onur Yiğitol profil fotoğrafı';
   profileImg.loading = 'eager';
-  profileImg.decoding = 'sync';
+  profileImg.decoding = 'async';
+  profileImg.style.width = '100%';
+  profileImg.style.height = '100%';
+  profileImg.style.objectFit = 'cover';
+  profileImg.style.objectPosition = '50% 28%';
 }
 
 const observer = new IntersectionObserver(entries => entries.forEach(e => {
