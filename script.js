@@ -18,6 +18,29 @@ if (profileImg) {
   profileImg.style.objectPosition = '50% 28%';
 }
 
+const stableProjectImages = {
+  'sirta-solar-rail.webp': 'sirta.svg',
+  'tubitak-map.webp': 'tubitak.svg',
+  'asra-system.webp': 'asra.svg',
+  'mavi2053.webp': 'mavi2053.svg',
+  'hero-road.webp': 'yol2053.svg',
+  'offshore-hybrid.webp': 'offshore.svg',
+  'green-city.webp': 'green-city.svg',
+  'digital-twin.webp': 'digital-twin.svg',
+  'smart-center.webp': 'yol2053.svg',
+  'road-network.webp': 'digital-twin.svg',
+  'mavi-infographic.webp': 'mavi2053.svg',
+  'wind-maps.webp': 'green-city.svg'
+};
+
+document.querySelectorAll('img').forEach(img => {
+  const file = (img.getAttribute('src') || '').split('/').pop()?.split('?')[0];
+  if (file && stableProjectImages[file]) {
+    img.src = `assets/images/${stableProjectImages[file]}?v=20261013-1700`;
+    img.decoding = 'async';
+  }
+});
+
 const observer = new IntersectionObserver(entries => entries.forEach(e => {
   if (e.isIntersecting) e.target.classList.add('visible');
 }), { threshold: .12 });
