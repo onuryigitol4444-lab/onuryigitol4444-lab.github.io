@@ -19,27 +19,36 @@ if (profileImg) {
 }
 
 const stableProjectImages = {
-  'sirta-solar-rail.webp': 'sirta.svg',
-  'tubitak-map.webp': 'tubitak.svg',
-  'asra-system.webp': 'asra.svg',
-  'mavi2053.webp': 'mavi2053.svg',
-  'hero-road.webp': 'yol2053.svg',
-  'offshore-hybrid.webp': 'offshore.svg',
-  'green-city.webp': 'green-city.svg',
-  'digital-twin.webp': 'digital-twin.svg',
-  'smart-center.webp': 'yol2053.svg',
-  'road-network.webp': 'digital-twin.svg',
-  'mavi-infographic.webp': 'mavi2053.svg',
-  'wind-maps.webp': 'green-city.svg'
+  sirta: 'assets/images/sirta.svg?v=20261013-1805',
+  tubitak: 'assets/images/tubitak.svg?v=20261013-1805',
+  asra: 'assets/images/asra-system.webp?v=20261013-1805',
+  mavi: 'assets/images/mavi2053.svg?v=20261013-1805',
+  yol: 'assets/images/yol2053.svg?v=20261013-1805',
+  offshore: 'assets/images/offshore-hybrid.webp?v=20261013-1805',
+  smartcity: 'assets/images/green-city.svg?v=20261013-1805',
+  digitaltwin: 'assets/images/digital-twin.svg?v=20261013-1805'
 };
 
-document.querySelectorAll('img').forEach(img => {
-  const file = (img.getAttribute('src') || '').split('/').pop()?.split('?')[0];
-  if (file && stableProjectImages[file]) {
-    img.src = `assets/images/${stableProjectImages[file]}?v=20261013-1700`;
+document.querySelectorAll('.project-card[data-project]').forEach(card => {
+  const key = card.dataset.project;
+  const img = card.querySelector('img');
+  if (img && stableProjectImages[key]) {
+    img.src = stableProjectImages[key];
     img.decoding = 'async';
   }
 });
+
+document.querySelectorAll('.gallery img').forEach((img, i) => {
+  const replacements = [
+    'assets/images/yol2053.svg?v=20261013-1805',
+    'assets/images/digital-twin.svg?v=20261013-1805',
+    'assets/images/mavi2053.svg?v=20261013-1805'
+  ];
+  if (replacements[i]) img.src = replacements[i];
+});
+
+const windMap = document.querySelector('.research-panel img');
+if (windMap) windMap.src = 'assets/images/green-city.svg?v=20261013-1805';
 
 const observer = new IntersectionObserver(entries => entries.forEach(e => {
   if (e.isIntersecting) e.target.classList.add('visible');
