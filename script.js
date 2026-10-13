@@ -50,6 +50,29 @@ document.querySelectorAll('.gallery img').forEach((img, i) => {
 const windMap = document.querySelector('.research-panel img');
 if (windMap) windMap.src = 'assets/images/green-city.svg?v=20261013-1857';
 
+const glowStyle = document.createElement('style');
+glowStyle.textContent = `
+.cursor-glow{
+  position:fixed;
+  left:0;
+  top:0;
+  width:360px;
+  height:360px;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:0;
+  opacity:0;
+  background:radial-gradient(circle,rgba(110,231,249,.16) 0%,rgba(68,180,210,.09) 32%,rgba(20,90,120,.04) 52%,transparent 72%);
+  filter:blur(16px);
+  transition:opacity .25s ease;
+  will-change:transform;
+}
+.cursor-glow.active{opacity:1}
+.topbar,main,footer{position:relative;z-index:1}
+@media (pointer:coarse){.cursor-glow{display:none}}
+`;
+document.head.appendChild(glowStyle);
+
 const cursorGlow = document.querySelector('.cursor-glow');
 if (cursorGlow && window.matchMedia('(pointer:fine)').matches) {
   let currentX = window.innerWidth / 2;
@@ -66,8 +89,8 @@ if (cursorGlow && window.matchMedia('(pointer:fine)').matches) {
   window.addEventListener('pointerleave', () => cursorGlow.classList.remove('active'));
 
   const animateGlow = () => {
-    currentX += (targetX - currentX) * 0.16;
-    currentY += (targetY - currentY) * 0.16;
+    currentX += (targetX - currentX) * 0.14;
+    currentY += (targetY - currentY) * 0.14;
     cursorGlow.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%)`;
     requestAnimationFrame(animateGlow);
   };
