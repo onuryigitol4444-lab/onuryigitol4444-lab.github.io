@@ -19,14 +19,14 @@ if (profileImg) {
 }
 
 const stableProjectImages = {
-  sirta: 'assets/images/sirta.svg?v=20261013-1805',
-  tubitak: 'assets/images/tubitak.svg?v=20261013-1805',
-  asra: 'assets/images/asra-system.webp?v=20261013-1805',
-  mavi: 'assets/images/mavi2053.svg?v=20261013-1805',
-  yol: 'assets/images/yol2053.svg?v=20261013-1805',
-  offshore: 'assets/images/offshore-hybrid.webp?v=20261013-1805',
-  smartcity: 'assets/images/green-city.svg?v=20261013-1805',
-  digitaltwin: 'assets/images/digital-twin.svg?v=20261013-1805'
+  sirta: 'assets/images/sirta.svg?v=20261013-1857',
+  tubitak: 'assets/images/tubitak.svg?v=20261013-1857',
+  asra: 'assets/images/asra.svg?v=20261013-1857',
+  mavi: 'assets/images/mavi2053.svg?v=20261013-1857',
+  yol: 'assets/images/yol2053.svg?v=20261013-1857',
+  offshore: 'assets/images/offshore-hybrid.webp?v=20261013-1857',
+  smartcity: 'assets/images/green-city.svg?v=20261013-1857',
+  digitaltwin: 'assets/images/digital-twin.svg?v=20261013-1857'
 };
 
 document.querySelectorAll('.project-card[data-project]').forEach(card => {
@@ -40,15 +40,15 @@ document.querySelectorAll('.project-card[data-project]').forEach(card => {
 
 document.querySelectorAll('.gallery img').forEach((img, i) => {
   const replacements = [
-    'assets/images/yol2053.svg?v=20261013-1805',
-    'assets/images/digital-twin.svg?v=20261013-1805',
-    'assets/images/mavi2053.svg?v=20261013-1805'
+    'assets/images/yol2053.svg?v=20261013-1857',
+    'assets/images/digital-twin.svg?v=20261013-1857',
+    'assets/images/mavi2053.svg?v=20261013-1857'
   ];
   if (replacements[i]) img.src = replacements[i];
 });
 
 const windMap = document.querySelector('.research-panel img');
-if (windMap) windMap.src = 'assets/images/green-city.svg?v=20261013-1805';
+if (windMap) windMap.src = 'assets/images/green-city.svg?v=20261013-1857';
 
 const observer = new IntersectionObserver(entries => entries.forEach(e => {
   if (e.isIntersecting) e.target.classList.add('visible');
